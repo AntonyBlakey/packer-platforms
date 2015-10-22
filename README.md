@@ -74,7 +74,7 @@ edit it to specify your Windows activation keys, Windows and OSX timezone and lo
 
         cd <<ROOT>>/packer
         ./build-osx.sh osx/osx10
-        ./build-windows.sh windows/win10/x86
+        ./build-windows.sh windows/win10/enterprise/x86
         
   You can build them all at once using cli scripting, although it will take a while :) Note that you might
   see some errors during construction, but that is to be expected. On Windows in particular openssh doesn't like to
