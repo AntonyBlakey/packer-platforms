@@ -1,0 +1,6 @@
+{
+    "os_name": "osx11",
+    "guest_os_type": "darwin15-64",
+    "iso": "OSX_InstallESD_10.11_15A284.dmg",
+    "clitools": "Command_Line_Tools_OS_X_10.11_for_Xcode_7.dmg"
+}

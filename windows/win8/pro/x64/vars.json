@@ -1,0 +1,7 @@
+{
+    "os_name": "win8",
+    "version_name": "pro",
+    "width_name": "x64",
+    "guest_os_type": "windows8-64",
+    "iso": "en_windows_8_x64_dvd_915440.iso"
+}

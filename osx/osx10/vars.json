@@ -1,0 +1,6 @@
+{
+    "os_name": "osx10",
+    "guest_os_type": "darwin14-64",
+    "iso": "OSX_InstallESD_10.10_14A389.dmg",
+    "clitools": "Command_Line_Tools_OS_X_10.10_for_Xcode_7.dmg"
+}

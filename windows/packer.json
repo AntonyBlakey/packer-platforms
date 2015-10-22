@@ -1,0 +1,68 @@
+{
+    "variables": {
+        "os_name": "",
+        "version_name": "",
+        "width_name": "",
+        "guest_os_type": "",
+        "iso": "",
+        "rootdir": "",
+        "headless": "true"
+    },
+    "builders": [
+        {
+            "vm_name": "{{user `os_name`}}-{{user `version_name`}}-{{user `width_name`}}",
+            "guest_os_type": "{{user `guest_os_type`}}",
+            "iso_url": "{{user `rootdir`}}/Windows/ISOs/{{user `iso`}}",
+            "type": "vmware-windows-iso",
+            "iso_checksum_type": "none",
+            "winrm_username": "vagrant",
+            "winrm_password": "vagrant",
+            "winrm_wait_timeout": "20m",
+            "floppy_files": [
+                "windows/{{user `os_name`}}/{{user `version_name`}}/{{user `width_name`}}/Autounattend*",
+                "windows/{{user `os_name`}}/{{user `version_name`}}/Autounattend*",
+                "windows/{{user `os_name`}}/{{user `version_name`}}/{{user `width_name`}}/bootstrap*",
+                "windows/{{user `os_name`}}/{{user `version_name`}}/bootstrap*",
+                "windows/{{user `os_name`}}/{{user `width_name`}}/bootstrap*",
+                "windows/{{user `os_name`}}/bootstrap*",
+                "windows/bootstrap*"
+            ],
+            "http_directory": "{{user `rootdir`}}",
+            "http_port_min": 9000,
+            "http_port_max": 9000,
+            "headless": "{{user `headless`}}",
+            "shutdown_command": "cmd /c shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+            "disk_size": 40960,
+            "vmx_data": {
+                "memsize": "2048",
+                "numvcpus": "4",
+                "cpuid.coresPerSocket": "1",
+                "ethernet0.virtualDev": "e1000",
+                "scsi0.virtualDev": "lsisas1068",
+                "mks.enable3d": "TRUE",
+                "mks.forceDiscreteGPU": "FALSE",
+                "mks.disableWorkloadBasedGPUSwitching": "TRUE",
+                "gui.fitguestusingnativedisplayresolution": "FALSE",
+                "gui.applyHostDisplayScalingToGuest": "FALSE"
+            }
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "powershell",
+            "scripts": [
+                "windows/install-vmware-tools.ps1",
+                "windows/remove-installation-files.ps1"
+            ]
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "vagrant",
+            "keep_input_artifact": false,
+            "vagrantfile_template": "windows/vagrant-template.rb",
+            "compression_level": 6,
+            "output": "output/{{user `os_name`}}-{{user `version_name`}}-{{user `width_name`}}.box"
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "os_name": "win2012r2",
+    "version_name": "standard",
+    "width_name": "x64",
+    "guest_os_type": "windows8srv-64",
+    "iso": "en_windows_server_2012_r2_with_update_x64_dvd_6052708.iso"
+}

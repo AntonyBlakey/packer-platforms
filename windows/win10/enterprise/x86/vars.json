@@ -1,0 +1,7 @@
+{
+    "os_name": "win10",
+    "version_name": "enterprise",
+    "width_name": "x86",
+    "guest_os_type": "windows9",
+    "iso": "en_windows_10_enterprise_x86_dvd_6851156.iso"
+}

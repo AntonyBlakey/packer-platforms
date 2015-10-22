@@ -1,0 +1,7 @@
+{
+    "os_name": "win2008",
+    "version_name": "standard",
+    "width_name": "x64",
+    "guest_os_type": "longhorn-64",
+    "iso": "en_windows_server_2008_with_sp2_x64_dvd_342336.iso"
+}

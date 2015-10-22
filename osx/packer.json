@@ -1,0 +1,107 @@
+{
+    "variables": {
+        "rootdir": "",
+        "os_name": "",
+        "guest_os_type": "",
+        "iso": "",
+        "clitools": "",
+        "headless": "true"
+    },
+    "builders": [
+        {
+            "vm_name": "{{user `os_name`}}",
+            "type": "vmware-iso",
+            "guest_os_type": "{{user `guest_os_type`}}",
+            "iso_url": "{{user `rootdir`}}/OSX/DMGs/{{user `iso`}}",
+            "iso_checksum_type": "none",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "ssh_wait_timeout": "60m",
+            "boot_wait": "2s",
+            "disk_size": 40960,
+            "headless": "{{user `headless`}}",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -h now",
+            "vmx_data": {
+                "memsize": "2048",
+                "numvcpus": "4",
+                "cpuid.coresPerSocket": "1",
+                "firmware": "efi",
+                "keyboardAndMouseProfile": "macProfile",
+                "smc.present": "TRUE",
+                "hpet0.present": "TRUE",
+                "ich7m.present": "TRUE",
+                "ehci.present": "TRUE",
+                "usb.present": "TRUE",
+                "scsi0.virtualDev": "lsilogic",
+                "ethernet0.virtualDev": "e1000",
+                "mks.enable3d": "TRUE",
+                "mks.forceDiscreteGPU": "FALSE",
+                "mks.disableWorkloadBasedGPUSwitching": "TRUE",
+                "gui.fitguestusingnativedisplayresolution": "FALSE",
+                "gui.applyHostDisplayScalingToGuest": "FALSE"
+            }
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "file",
+            "source": "vagrant.pub",
+            "destination": "/private/tmp/vagrant.pub"
+        },
+        {
+            "type": "file",
+            "source": "{{user `rootdir`}}/OSX/Utilities/{{user `clitools`}}",
+            "destination": "/private/tmp/clitools.dmg"
+        },
+        {
+            "type": "file",
+            "source": "osx/kcpassword",
+            "destination": "/private/tmp/kcpassword"
+        },
+        {
+            "type": "shell",
+            "execute_command": "chmod +x {{ .Path }}; sudo -E -S bash '{{ .Path }}'",
+            "scripts": [
+                "osx/bootstrap.sh",
+                "osx/install-os-updates.sh",
+                "osx/detect-new-network-interfaces.sh",
+                "osx/enable-vagrant-user-auto-login.sh",
+                "osx/install-xcode-cli-tools.sh"
+            ]
+        },
+        {
+            "type": "shell",
+            "execute_command": "chmod +x {{ .Path }}; sudo -E -S bash '{{ .Path }}'",
+            "scripts": [
+                "osx/prep-install-vmware-tools.sh"
+            ]
+        },
+        {
+            "type": "shell",
+            "inline": "echo"
+        },
+        {
+            "type": "file",
+            "source": "/Applications/VMware Fusion.app/Contents/Library/isoimages/darwin.iso",
+            "destination": "/private/tmp/darwin.iso"
+        },
+        {
+            "type": "shell",
+            "execute_command": "chmod +x {{ .Path }}; sudo -E -S bash '{{ .Path }}'",
+            "scripts": [
+                "osx/enable-arcfour-cipher-in-ssh.sh",
+                "osx/install-vmware-tools.sh",
+                "osx/setup-miscellaneous-ui.sh"
+            ]
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "vagrant",
+            "keep_input_artifact": false,
+            "vagrantfile_template": "osx/vagrant-template.rb",
+            "compression_level": 6,
+            "output": "output/{{user `os_name`}}.box"
+        }
+    ]
+}

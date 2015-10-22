@@ -1,0 +1,8 @@
+{
+    "headless": "false",
+    "os_name": "win10",
+    "version_name": "enterprise",
+    "width_name": "x64",
+    "guest_os_type": "windows9-64",
+    "iso": "en_windows_10_enterprise_x64_dvd_6851151.iso"
+}

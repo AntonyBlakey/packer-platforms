@@ -1,0 +1,6 @@
+{
+    "os_name": "osx8",
+    "guest_os_type": "darwin12-64",
+    "iso": "OSX_InstallESD_10.8.2_12C60.dmg",
+    "clitools": "command_line_tools_for_osx_mountain_lion_april_2014.dmg"
+}

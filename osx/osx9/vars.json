@@ -1,0 +1,6 @@
+{
+    "os_name": "osx9",
+    "guest_os_type": "darwin13-64",
+    "iso": "OSX_InstallESD_10.9_13A603.dmg",
+    "clitools": "commandlinetoolsosx10.9forxcode6.2.dmg"
+}
