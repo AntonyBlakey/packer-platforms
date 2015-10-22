@@ -5,9 +5,9 @@ gives access to an enormous number of tools.
 The setup is as follows:
 
 1. Install VMWare, Packer (<http://packer.io>) and Vagrant (<http://vagrantup.com>),
-and the the Vagrant VMWare connector, which can be purchased from <http://vagrantup.com>.
+and the Vagrant VMWare connector, which can be purchased from <http://vagrantup.com>.
 
-2. Create a directory structure as follows (which can be rooted anywhere), populated with the the following files.
+2. Create a directory structure as follows (which can be rooted anywhere), populated with the following files.
 You don't need the files for those versions you aren't going to build, although note that there are dependencies i.e. 
 on Windows you need PowerShell 2 installed in order to install .NET 4.5.2 in order to install PowerShell 3, in order
 to complete the installation.
