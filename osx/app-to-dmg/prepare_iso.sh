@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Preparation script for an OS X automated installation for use with VeeWee/Packer/Vagrant
+# Preparation script for an OS X automated installation for use with Packer
 #
 # What the script does, in more detail:
 #
@@ -16,18 +16,18 @@
 # 4. veewee-config.pkg and the various support utilities are copied, and the disk
 #    image is saved to the output path.
 #
-# Thanks:
+# This script was written by Antony Blakey <antony.blakey@gmail.com>, derived largely from
+# Tim Sutton's work at: https://github.com/timsutton/osx-vm-templates and information from
+# http://forums.macrumors.com/threads/how-to-create-el-capitan-os-x-bootable-dvd.1923894/page-2#post-22048507
+#
+# Tim Sutton's original thanks:
+#
 # Idea and much of the implementation thanks to Pepijn Bruienne, who's also provided
 # some process notes here: https://gist.github.com/4542016. The sample minstallconfig.xml,
 # use of OSInstall.collection and readme documentation provided with Greg Neagle's
 # createOSXInstallPkg tool also proved very helpful. (http://code.google.com/p/munki/wiki/InstallingOSX)
 # User creation via package install method also credited to Greg, and made easy with Per
 # Olofsson's CreateUserPkg (http://magervalp.github.io/CreateUserPkg)
-#
-# Restructuring by Antony Blakey <antony.blakey@gmail.com>
-#
-# El Capitan mods by Antony Blakey <antony.blakey@gmail.com> based on information at:
-# http://forums.macrumors.com/threads/how-to-create-el-capitan-os-x-bootable-dvd.1923894/page-2#post-22048507
 
 set -e
 
