@@ -67,7 +67,7 @@ somewhere
         ./prepare_iso.sh ../../../OSX/InstallerApps/Install\ OS\ X\ Yosemite.app ../../../OSX/DMGs
         ./prepare_iso.sh ../../../OSX/InstallerApps/Install\ OS\ X\ El\ Capitan.app ../../../OSX/DMGs
 
-5. Copy `<<ROOT>>/packer/template-packer-config.sed.sample` to `<<ROOT>>/packer-config.sed` and
+5. Copy `<<ROOT>>/packer/template-packer-config.sed` to `<<ROOT>>/packer-config.sed` and
 edit it to specify your Windows activation keys, Windows and OSX timezone and locale.
 
 6. Build whichever boxes you want, e.g.
